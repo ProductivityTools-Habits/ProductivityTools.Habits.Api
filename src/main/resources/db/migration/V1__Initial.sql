@@ -1,5 +1,6 @@
-CREATE TABLE IF NOT EXISTS habits
+CREATE TABLE IF NOT EXISTS person
 (
     id                    SERIAL PRIMARY KEY,
-    name                  VARCHAR(255)      NOT NULL,
+    firstName             VARCHAR(255)      NOT NULL,
+    LastName              VARCHAR(255)      NOT NULL
 );
