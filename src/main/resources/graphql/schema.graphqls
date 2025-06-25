@@ -1,8 +1,13 @@
 type Query {
   getPerson: Person
+  getHabit: Habit
 }
 
 type Person {
-    firstName: String
-    lastName: String
+  firstName: String
+  lastName: String
+}
+
+type Habit {
+  name: String
 }
