@@ -1,5 +1,6 @@
 package top.productivitytools.habits.api.controllers;
 
+import java.util.List;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
@@ -16,5 +17,10 @@ public class HabitController {
     public Habit getHabit() {
         var habit = habitService.getHabitById(1);
         return habit;
+    }
+
+    @QueryMapping
+    public List<Habit> getHabits() {
+        return habitService.getHabits();
     }
 }
