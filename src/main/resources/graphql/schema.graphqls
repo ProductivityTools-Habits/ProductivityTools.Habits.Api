@@ -4,6 +4,22 @@ type Query {
   getHabits: [Habit]
 }
 
+type Mutation{
+  createHabit(input: CreateHabitInput!) :CreateHabitResponse!
+}
+
+type CreateHabitResponse{
+  habit:Habit
+  code:Int!
+  success:Boolean!
+  message:String!
+}
+
+input CreateHabitInput{
+  name:String!
+}
+
+
 type Person {
   firstName: String
   lastName: String
