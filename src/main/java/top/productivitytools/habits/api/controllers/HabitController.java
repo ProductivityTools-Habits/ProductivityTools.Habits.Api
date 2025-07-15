@@ -2,6 +2,7 @@ package top.productivitytools.habits.api.controllers;
 
 import java.util.List;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.stereotype.Controller;
 
 import lombok.RequiredArgsConstructor;
@@ -22,5 +23,11 @@ public class HabitController {
     @QueryMapping
     public List<Habit> getHabits() {
         return habitService.getHabits();
+    }
+
+    @MutationMapping
+    public Habit createHabit(String name)
+    {
+        return new Habit();
     }
 }
