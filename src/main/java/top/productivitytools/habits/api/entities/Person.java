@@ -24,6 +24,11 @@ public class Person {
         this.lastName = lastName;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+
     public String getFirstName() {
         return firstName;
     }
