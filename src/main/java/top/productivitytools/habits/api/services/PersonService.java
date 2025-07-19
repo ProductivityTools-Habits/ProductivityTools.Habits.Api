@@ -1,9 +1,18 @@
 package top.productivitytools.habits.api.services;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import top.productivitytools.habits.api.entities.Person;
+import top.productivitytools.habits.api.repositories.PersonRepo;
 
+@Service
+@RequiredArgsConstructor
+@Slf4j
 public class PersonService {
       private final PersonRepo personRepo;
 
