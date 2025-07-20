@@ -18,7 +18,7 @@ public class HabitController {
 
     @QueryMapping
     public Habit getHabit() {
-        var habit = habitService.getHabitById(1);
+        Habit habit = habitService.getHabitById(1);
         return habit;
     }
 
@@ -30,6 +30,8 @@ public class HabitController {
     @MutationMapping
     public boolean createHabit(@Argument("createHabitInput") CreateHabitInput createHabitInput) 
     {
-        return true;
+        Habit habit=new Habit(createHabitInput.name());
+        boolean result=this.habitService.addHabit(habit);
+        return result;
     }
 }

@@ -27,4 +27,17 @@ public class HabitService {
     public List<Habit> getHabits() {
         return habitRepo.findAll();
     }
+
+    public boolean addHabit(Habit habit)
+    {
+        try{
+        this.habitRepo.save(habit);
+        return true;
+        }
+        catch(Exception e)
+        {
+            return false;
+        }
+        
+    }
 }
