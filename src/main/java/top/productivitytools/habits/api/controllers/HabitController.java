@@ -17,7 +17,7 @@ public class HabitController {
     private final HabitService habitService;
 
     @QueryMapping
-    public Habit getHabit() {
+    public Habit getHabit(@Argument("id") Integer id) {
         Habit habit = habitService.getHabitById(1);
         return habit;
     }
