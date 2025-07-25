@@ -5,10 +5,10 @@ type Query {
 }
 
 type Mutation {
-  createHabit(createHabitInput: CreateHabitInput!): Boolean
+  saveHabit(habitInput: HabitInput!): Boolean
 }
 
-input CreateHabitInput {
+input HabitInput {
   name: String!
 }
 
