@@ -1,5 +1,5 @@
 package top.productivitytools.habits.api.entities;
 
-public record HabitInput(String name) {
+public record HabitInput(Integer id, String name) {
     
 }

@@ -34,4 +34,12 @@ public class HabitController {
         boolean result=this.habitService.addHabit(habit);
         return result;
     }
+
+    @MutationMapping
+    public boolean saveHabit(@Argument("habitInput") HabitInput createHabitInput) 
+    {
+        Habit habit=new Habit(createHabitInput.id(), createHabitInput.name());
+        boolean result=this.habitService.addHabit(habit);
+        return result;
+    }
 }
