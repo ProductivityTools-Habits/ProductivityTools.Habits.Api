@@ -6,6 +6,7 @@ type Query {
 
 type Mutation {
   saveHabit(habitInput: HabitInput!): Boolean
+  deleteHabit(id: Int!): Boolean
 }
 
 input HabitInput {

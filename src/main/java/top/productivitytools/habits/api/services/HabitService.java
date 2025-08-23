@@ -37,7 +37,18 @@ public class HabitService {
         catch(Exception e)
         {
             return false;
-        }
-        
+        } 
     }
+
+    public boolean deleteHabit(int id)
+    {
+        try{
+        this.habitRepo.deleteById(id);
+        return true;
+        }
+        catch(Exception e)
+        {
+            return false;
+        } 
+    }   
 }

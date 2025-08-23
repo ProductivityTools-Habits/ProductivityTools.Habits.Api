@@ -27,13 +27,13 @@ public class HabitController {
         return habitService.getHabits();
     }
 
-    @MutationMapping
-    public boolean createHabit(@Argument("habitInput") HabitInput createHabitInput) 
-    {
-        Habit habit=new Habit(createHabitInput.name());
-        boolean result=this.habitService.addHabit(habit);
-        return result;
-    }
+    // @MutationMapping
+    // public boolean createHabit(@Argument("habitInput") HabitInput createHabitInput) 
+    // {
+    //     Habit habit=new Habit(createHabitInput.name());
+    //     boolean result=this.habitService.addHabit(habit);
+    //     return result;
+    // }
 
     @MutationMapping
     public boolean saveHabit(@Argument("habitInput") HabitInput createHabitInput) 
@@ -41,5 +41,11 @@ public class HabitController {
         Habit habit=new Habit(createHabitInput.id(), createHabitInput.name());
         boolean result=this.habitService.addHabit(habit);
         return result;
+    }
+
+    @MutationMapping
+    public boolean deleteHabit(@Argument("id") Integer id){
+        var r=this.habitService.deleteHabit(id);
+        return r;
     }
 }
