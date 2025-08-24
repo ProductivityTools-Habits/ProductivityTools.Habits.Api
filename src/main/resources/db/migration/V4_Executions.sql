@@ -1,0 +1,1 @@
+ALTER TABLE habitsexecution RENAME TO executions;
