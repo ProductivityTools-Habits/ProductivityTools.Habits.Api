@@ -20,7 +20,7 @@ public class Execution {
     private LocalDate date;
 
     @ManyToOne
-    @JoinColumn(name = "habitId")
+    @JoinColumn(name = "habitid")
     private Habit habit;
 
     @Column(name = "status")

@@ -3,6 +3,7 @@ package top.productivitytools.habits.api.services;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,13 +14,18 @@ import top.productivitytools.habits.api.repositories.ExecutionRepo;
 @RequiredArgsConstructor
 @Slf4j
 public class ExecutionService {
-    
+
     private final ExecutionRepo executionRepo;
 
-
+    @Transactional(readOnly = true)
     public List<Execution> getExecutions() {
-        var result=executionRepo.findAll();
-        return result;
+        try {
+            var result = executionRepo.findAll();
+            return result;
+        } catch (Exception e) {
+            log.error("Error while getting executions", e);
+            return java.util.Collections.emptyList();
+        }
     }
 
 }
