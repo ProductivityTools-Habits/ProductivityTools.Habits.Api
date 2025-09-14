@@ -28,4 +28,16 @@ public class ExecutionService {
         }
     }
 
+    public boolean completeExecution(int id) {
+        try {
+            Execution element=executionRepo.getReferenceById(id);
+            element.setStatus("Completed");
+            executionRepo.save(element);
+            return true;
+        } catch (Exception e) {
+            log.error("Error while completing execution", e);
+            return false;
+        }
+    }
+
 }

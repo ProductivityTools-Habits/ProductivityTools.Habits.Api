@@ -2,12 +2,13 @@ type Query {
   getPerson: Person
   getHabit(id: Int!): Habit
   getHabits: [Habit]
-  getExecutions:[Execution]
+  getExecutions: [Execution]
 }
 
 type Mutation {
   saveHabit(habitInput: HabitInput!): Boolean
   deleteHabit(id: Int!): Boolean
+  completeExecution(id: Int!): Boolean
 }
 
 input HabitInput {
@@ -30,5 +31,5 @@ type Execution {
   id: ID!
   date: String
   habit: Habit
-  status: Boolean
+  status: String
 }

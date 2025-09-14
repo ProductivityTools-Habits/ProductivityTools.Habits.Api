@@ -1,0 +1,2 @@
+ALTER TABLE executions DROP COLUMN status;
+ALTER TABLE executions ADD COLUMN status  VARCHAR(100) NULL;

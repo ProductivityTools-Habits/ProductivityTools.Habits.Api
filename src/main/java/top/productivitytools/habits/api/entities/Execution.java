@@ -24,7 +24,7 @@ public class Execution {
     private Habit habit;
 
     @Column(name = "status")
-    private boolean status;
+    private String status;
 
     public Integer getId() {
         return id;
@@ -38,7 +38,14 @@ public class Execution {
         return habit;
     }
 
-    public boolean isStatus() {
+    public String getStatus() {
         return status;
     }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+
+
 }
