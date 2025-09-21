@@ -46,6 +46,8 @@ public class Execution {
         this.status = status;
     }
 
-
-
+    public void setHabit(Habit habit)
+    {
+        this.habit=habit;
+    }
 }

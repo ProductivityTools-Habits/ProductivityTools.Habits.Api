@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import top.productivitytools.habits.api.entities.Execution;
 import top.productivitytools.habits.api.repositories.ExecutionRepo;
+import top.productivitytools.habits.api.repositories.HabitRepo;
 
 @Service
 @RequiredArgsConstructor
@@ -16,6 +17,8 @@ import top.productivitytools.habits.api.repositories.ExecutionRepo;
 public class ExecutionService {
 
     private final ExecutionRepo executionRepo;
+    private final HabitRepo habitRepo;
+
 
     @Transactional(readOnly = true)
     public List<Execution> getExecutions() {
@@ -30,10 +33,21 @@ public class ExecutionService {
 
     public boolean completeExecution(int id) {
         try {
-            Execution element=executionRepo.getReferenceById(id);
-            element.setStatus("Completed");
-            executionRepo.save(element);
-            return true;
+            Execution element = executionRepo.getReferenceById(id);
+            var recordExists = executionRepo.existsById(id);
+            if (recordExists) {
+                element.setStatus("Completed");
+                executionRepo.save(element);
+                return true;
+            }
+            else
+            {
+                var habit=habitRepo.getReferenceById(id);
+                Execution execution=new Execution();
+                execution.setHabit(habit);
+                executionRepo.save(execution);
+                return true;
+            }
         } catch (Exception e) {
             log.error("Error while completing execution", e);
             return false;
