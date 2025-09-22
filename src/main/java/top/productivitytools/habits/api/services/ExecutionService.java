@@ -1,5 +1,6 @@
 package top.productivitytools.habits.api.services;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -31,11 +32,11 @@ public class ExecutionService {
         }
     }
 
-    public boolean completeExecution(int id) {
+    public boolean completeExecution(int id, LocalDate date) {
         try {
             Execution element = executionRepo.getReferenceById(id);
-            var recordExists = executionRepo.existsById(id);
-            if (recordExists) {
+            var recordExists = executionRepo.findByHabitIdAndDate(id, date);
+            if (recordExists.size()>0) {
                 element.setStatus("Completed");
                 executionRepo.save(element);
                 return true;
@@ -44,6 +45,8 @@ public class ExecutionService {
             {
                 var habit=habitRepo.getReferenceById(id);
                 Execution execution=new Execution();
+                execution.setStatus("Completed");
+                execution.setDate(date);
                 execution.setHabit(habit);
                 executionRepo.save(execution);
                 return true;

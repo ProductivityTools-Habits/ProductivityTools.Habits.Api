@@ -50,4 +50,8 @@ public class Execution {
     {
         this.habit=habit;
     }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 }
