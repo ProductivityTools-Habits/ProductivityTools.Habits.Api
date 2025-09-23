@@ -20,7 +20,6 @@ public class ExecutionService {
     private final ExecutionRepo executionRepo;
     private final HabitRepo habitRepo;
 
-
     @Transactional(readOnly = true)
     public List<Execution> getExecutions() {
         try {
@@ -33,19 +32,27 @@ public class ExecutionService {
     }
 
     public boolean completeExecution(int id, LocalDate date) {
+        var r = this.setStatus(id, date, "Completed");
+        return r;
+    }
+
+    public boolean skipExecution(int id, LocalDate date) {
+        var r = this.setStatus(id, date, "Skipped");
+        return r;
+    }
+
+    private boolean setStatus(int id, LocalDate date, String status) {
         try {
-            Execution element = executionRepo.getReferenceById(id);
-            var recordExists = executionRepo.findByHabitIdAndDate(id, date);
-            if (recordExists.size()>0) {
-                element.setStatus("Completed");
-                executionRepo.save(element);
+            var recordExists = executionRepo.findByHabitIdAndDate(id, date);            
+            if (recordExists.size() == 1) {
+                var record=recordExists.get(0);
+                record.setStatus(status);
+                executionRepo.save(record);
                 return true;
-            }
-            else
-            {
-                var habit=habitRepo.getReferenceById(id);
-                Execution execution=new Execution();
-                execution.setStatus("Completed");
+            } else {
+                var habit = habitRepo.getReferenceById(id);
+                Execution execution = new Execution();
+                execution.setStatus(status);
                 execution.setDate(date);
                 execution.setHabit(habit);
                 executionRepo.save(execution);

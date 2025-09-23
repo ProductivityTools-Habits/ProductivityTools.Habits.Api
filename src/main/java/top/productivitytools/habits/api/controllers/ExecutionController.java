@@ -23,8 +23,14 @@ public class ExecutionController {
     }
 
     @MutationMapping
-    public boolean completeExecution(@Argument("id") Integer id, @Argument("date") LocalDate date){
-        var r=this.executionService.completeExecution(id,date);
+    public boolean completeExecution(@Argument("id") Integer id, @Argument("date") LocalDate date) {
+        var r = this.executionService.completeExecution(id, date);
+        return r;
+    }
+
+    @MutationMapping
+    public boolean skipExecution(@Argument("id") Integer id, @Argument("date") LocalDate date) {
+        var r = this.executionService.skipExecution(id, date);
         return r;
     }
 }
