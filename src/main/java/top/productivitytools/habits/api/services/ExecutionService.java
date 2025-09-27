@@ -40,6 +40,16 @@ public class ExecutionService {
         var r = this.setStatus(id, date, "Skipped");
         return r;
     }
+    
+    public boolean resetExecution(int id, LocalDate date){
+        var r=this.setStatus(id, date, null);
+        return r;
+    }
+
+    public boolean failExecution(int id, LocalDate date){
+        var r=this.setStatus(id, date, "Failed");
+        return r;
+    }
 
     private boolean setStatus(int id, LocalDate date, String status) {
         try {

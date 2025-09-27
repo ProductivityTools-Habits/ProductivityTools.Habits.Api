@@ -33,4 +33,16 @@ public class ExecutionController {
         var r = this.executionService.skipExecution(id, date);
         return r;
     }
+
+    @MutationMapping
+    public boolean resetExecution(@Argument("id") Integer id, @Argument("date") LocalDate date) {
+        var r = this.executionService.resetExecution(id, date);
+        return r;
+    }
+
+    @MutationMapping
+    public boolean failExecution(@Argument("id") Integer id, @Argument("date") LocalDate date) {
+        var r = this.executionService.failExecution(id, date);
+        return r;
+    }
 }
