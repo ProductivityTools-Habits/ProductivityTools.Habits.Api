@@ -1,8 +1,8 @@
 pipeline {
-    agent any
-
-    tools {
-        jdk 'jdk24'
+    agent {
+        docker {
+            image 'openjdk:24-jdk'
+        }
     }
 
     stages {
@@ -49,7 +49,6 @@ pipeline {
             steps {
                 script {
                     echo "build"
-                    sh 'java -version'
                     sh 'chmod +x gradlew'
                     sh './gradlew clean build --rerun-tasks'
                 }
