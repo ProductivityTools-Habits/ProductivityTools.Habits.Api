@@ -99,3 +99,12 @@ sudo dpkg -i jdk-25_linux-x64_bin.deb
 
 java -jar habits.api-0.0.1-SNAPSHOT.jar --spring.datasource.password=xx
 
+
+
+----
+ubuntu
+
+```
+chmod +x gradlew
+./gradlew clean build
+```
