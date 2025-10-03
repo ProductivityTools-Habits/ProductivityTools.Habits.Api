@@ -46,6 +46,7 @@ pipeline {
                 script {
                     echo "build"
                     sh 'chmod +x gradlew'
+                    sh 'ls -l gradlew'
                     sh './gradlew clean build --rerun-tasks'
                 }
             }
