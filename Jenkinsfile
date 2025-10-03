@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        jdk 'jdk24'
+    }
+
     stages {
         stage('Hello') {
             steps {
@@ -45,8 +49,8 @@ pipeline {
             steps {
                 script {
                     echo "build"
+                    sh 'java -version'
                     sh 'chmod +x gradlew'
-                    sh 'ls -l gradlew'
                     sh './gradlew clean build --rerun-tasks'
                 }
             }
