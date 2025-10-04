@@ -42,7 +42,7 @@ public class ExecutionService {
     }
     
     public boolean resetExecution(int id, LocalDate date){
-        var r=this.setStatus(id, date, null);
+        var r=this.setStatus(id, date, "Waiting");
         return r;
     }
 
