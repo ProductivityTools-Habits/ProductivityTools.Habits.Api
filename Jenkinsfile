@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        jdk 'jdk-24'
-    }
-
     stages {
         stage('Hello') {
             steps {
