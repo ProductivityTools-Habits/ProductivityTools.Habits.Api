@@ -47,6 +47,8 @@ pipeline {
                     echo "build"
                     sh 'java -version'
                     sh 'chmod +x gradlew'
+                    sh './gradlew --version'
+                    sh './gradlew --stop'
                     sh './gradlew clean build --rerun-tasks'
                 }
             }
