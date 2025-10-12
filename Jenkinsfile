@@ -46,15 +46,13 @@ pipeline {
                 script {
                     echo "build"
                     sh 'java -version'
-                    sh 'export JAVA_HOME="/usr/lib/jvm/jdk-25-oracle-x64"'
                     sh 'echo $JAVA_HOME'
                     sh 'chmod +x gradlew'
                     sh './gradlew --stop'
                     sh './gradlew --version'
                     sh './gradlew --stop'
-                    sh './gradlew clean build --rerun-tasks'
+                    sh 'export JAVA_HOME="/usr/lib/jvm/jdk-25-oracle-x64"; ./gradlew clean build --rerun-tasks'
                 }
             }
         }
-    }
 }
