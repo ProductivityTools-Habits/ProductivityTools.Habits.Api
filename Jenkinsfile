@@ -52,7 +52,7 @@ pipeline {
                     sh './gradlew --stop'
                     sh './gradlew --version'
                     sh './gradlew --stop'
-                    sh 'export JAVA_HOME="/usr/lib/jvm/jdk-25-oracle-x64"; ./gradlew clean build --rerun-tasks'
+                    sh 'export JAVA_HOME="/usr/lib/jvm/jdk-25-oracle-x64";java -version; ./gradlew clean build --rerun-tasks'
                 }
             }
         }
