@@ -57,13 +57,31 @@ pipeline {
             }
         }
 
+        // Run Application stage requires the following environment variables:
+        // SPRING_DATASOURCE_PASSWORD - Database password (e.g., "fsdafafa")
+        // SERVER_PORT - Server port (e.g., "9003")
+        // 
+        // To set these environment variables in Jenkins:
+        // 1. Go to your Jenkins job configuration
+        // 2. Under "Build Environment" section, check "Use secret text(s) or file(s)"
+        // 3. Add bindings:
+        //    - Variable: SPRING_DATASOURCE_PASSWORD, Credential: [Select your secret]
+        //    - Variable: SERVER_PORT, Credential: [Select your secret] or use "Inject environment variables"
+        // 
+        // Alternative method (Pipeline-level):
+        // Add an 'environment' block at the pipeline level (before 'stages') with:
+        // environment {
+        //     SPRING_DATASOURCE_PASSWORD = credentials('spring-datasource-password-id')
+        //     SERVER_PORT = '9003'
+        // }
+        // Or use withCredentials step if you prefer to keep secrets in Jenkins credentials store
         stage('Run Application') {
             steps {
                 script {
                     echo "Running application on Ubuntu"
                     sh '''
                         java -version
-                        java -jar build/libs/habits.api-0.0.1-SNAPSHOT.jar
+                        java -jar build/libs/habits.api-0.0.1-SNAPSHOT.jar --spring.datasource.password=${SPRING_DATASOURCE_PASSWORD} --server.port=${SERVER_PORT}
                     '''
                 }
             }
