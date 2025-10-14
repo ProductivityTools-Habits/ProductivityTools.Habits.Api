@@ -58,12 +58,6 @@ pipeline {
         }
 
         stage('Run Application') {
-            agent {
-                docker {
-                    image 'eclipse-temurin:25-jdk-ubuntu'
-                    args '-v /var/run/docker.sock:/var/run/docker.sock'
-                }
-            }
             steps {
                 script {
                     echo "Running application on Ubuntu"
