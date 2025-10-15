@@ -69,7 +69,6 @@ pipeline {
                         fi
                         mkdir -p /opt/PT.Habits
                         cp "$JAR" /opt/PT.Habits/
-                        chmod g+rw /opt/PT.Habits/habits.api-0.0.1-SNAPSHOT.jar
                     '''
                 }
             }
