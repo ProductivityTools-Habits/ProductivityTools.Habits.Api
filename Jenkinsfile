@@ -62,13 +62,14 @@ pipeline {
                 script {
                     echo "Copying JAR to /opt/PT.Habits"
                     sh '''
+                        umask 002
                         JAR=build/libs/habits.api-0.0.1-SNAPSHOT.jar
                         if [ ! -f "$JAR" ]; then
                           echo "Jar not found at $JAR"; exit 1
                         fi
-                        sudo mkdir -p /opt/PT.Habits
-                        sudo cp "$JAR" /opt/PT.Habits/
-                        sudo chown springuser:springuser /opt/PT.Habits/habits.api-0.0.1-SNAPSHOT.jar
+                        mkdir -p /opt/PT.Habits
+                        cp "$JAR" /opt/PT.Habits/
+                        chmod g+rw /opt/PT.Habits/habits.api-0.0.1-SNAPSHOT.jar
                     '''
                 }
             }
