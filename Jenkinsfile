@@ -57,6 +57,23 @@ pipeline {
             }
         }
 
+        stage('Copy Jar to /opt/PT.Habits') {
+            steps {
+                script {
+                    echo "Copying JAR to /opt/PT.Habits"
+                    sh '''
+                        JAR=build/libs/habits.api-0.0.1-SNAPSHOT.jar
+                        if [ ! -f "$JAR" ]; then
+                          echo "Jar not found at $JAR"; exit 1
+                        fi
+                        sudo mkdir -p /opt/PT.Habits
+                        sudo cp "$JAR" /opt/PT.Habits/
+                        sudo chown springuser:springuser /opt/PT.Habits/habits.api-0.0.1-SNAPSHOT.jar
+                    '''
+                }
+            }
+        }
+
         // Run Application stage requires the following environment variables:
         // SPRING_DATASOURCE_PASSWORD - Database password (e.g., "fsdafafa")
         // SERVER_PORT - Server port (e.g., "9003")
@@ -75,16 +92,16 @@ pipeline {
         //     SERVER_PORT = '9003'
         // }
         // Or use withCredentials step if you prefer to keep secrets in Jenkins credentials store
-        stage('Run Application') {
-            steps {
-                script {
-                    echo "Running application on Ubuntu"
-                    sh '''
-                        java -version
-                        java -jar build/libs/habits.api-0.0.1-SNAPSHOT.jar --spring.datasource.password=${SPRING_DATASOURCE_PASSWORD} --server.port=${SERVER_PORT}
-                    '''
-                }
-            }
-        }
+        // stage('Run Application') {
+        //     steps {
+        //         script {
+        //             echo "Running application on Ubuntu"
+        //             sh '''
+        //                 java -version
+        //                 java -jar build/libs/habits.api-0.0.1-SNAPSHOT.jar --spring.datasource.password=${SPRING_DATASOURCE_PASSWORD} --server.port=${SERVER_PORT}
+        //             '''
+        //         }
+        //     }
+        // }
     }
 }
