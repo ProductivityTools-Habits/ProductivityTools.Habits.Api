@@ -108,3 +108,9 @@ ubuntu
 chmod +x gradlew
 ./gradlew clean build
 ```
+
+
+
+
+
+sudo cp habits.env.example /etc/default/habits

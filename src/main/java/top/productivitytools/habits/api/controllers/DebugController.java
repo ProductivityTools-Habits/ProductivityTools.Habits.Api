@@ -10,6 +10,6 @@ public class DebugController {
 
     @GetMapping("/debug")
     public String Hello() {
-        return "Hello World";
+        return "Hello World1";
     }
 }

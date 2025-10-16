@@ -57,6 +57,15 @@ pipeline {
             }
         }
 
+        stage('stop application') {
+            steps {
+                script {
+                    echo "Stopping application"
+                    sh 'sudo systemctl stop habits'
+                }
+            }
+        }
+
         stage('Copy Jar to /opt/PT.Habits') {
             steps {
                 script {
@@ -70,6 +79,15 @@ pipeline {
                         mkdir -p /opt/PT.Habits
                         cp "$JAR" /opt/PT.Habits/
                     '''
+                }
+            }
+        }
+        
+        stage('start application') {
+            steps {
+                script {
+                    echo "Starting application"
+                    sh 'sudo systemctl start habits'
                 }
             }
         }
