@@ -31,7 +31,7 @@ public class HabitService {
     public boolean addHabit(Habit habit)
     {
         try{
-            his.habitRepo.save(habit);
+            this.habitRepo.save(habit);
             return true;
         }
         catch(Exception e)
