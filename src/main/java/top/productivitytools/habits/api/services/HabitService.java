@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,15 +29,34 @@ public class HabitService {
         return habitRepo.findAll();
     }
 
+    @Transactional
     public boolean addHabit(Habit habit)
     {
         try{
-            this.habitRepo.save(habit);
+            // If id is null or 0, treat as new entity
+            if (habit.getId() == null || habit.getId() == 0) {
+                // Create a new habit without an id to ensure JPA treats it as new
+                Habit newHabit = new Habit(habit.getName());
+                this.habitRepo.save(newHabit);
+            } else {
+                // For existing habits, check if it exists first
+                Optional<Habit> existingHabit = habitRepo.findById(habit.getId());
+                if (existingHabit.isPresent()) {
+                    // Update existing habit
+                    Habit existing = existingHabit.get();
+                    existing.setName(habit.getName());
+                    this.habitRepo.save(existing);
+                } else {
+                    // ID provided but doesn't exist - treat as new by creating without id
+                    Habit newHabit = new Habit(habit.getName());
+                    this.habitRepo.save(newHabit);
+                }
+            }
             return true;
         }
         catch(Exception e)
         {
-            log.error("Error adding habit: {}", e.getMessage());
+            log.error("Error adding habit: {}", e.getMessage(), e);
             return false;
         } 
     }
