@@ -31,11 +31,12 @@ public class HabitService {
     public boolean addHabit(Habit habit)
     {
         try{
-        this.habitRepo.save(habit);
-        return true;
+            his.habitRepo.save(habit);
+            return true;
         }
         catch(Exception e)
         {
+            log.error("Error adding habit: {}", e.getMessage());
             return false;
         } 
     }

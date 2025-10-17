@@ -113,4 +113,15 @@ chmod +x gradlew
 
 
 
+
 sudo cp habits.env.example /etc/default/habits
+
+enable jenkins tu run command without sudo
+```
+sudo visudo
+```
+
+add line
+```
+jenkins ALL=(root) NOPASSWD: /usr/bin/systemctl stop habits
+```
