@@ -16,7 +16,9 @@ public class WebConfig {
                 registry.addMapping("/**")
                         .allowedMethods("*")
                         .allowedHeaders("*")
-                        .allowedOrigins("http://localhost:4200","https://ptprojectsweb.web.app");
+                        .allowedOrigins("http://localhost:4200","https://ptprojectsweb.web.app")
+                        .allowCredentials(true)
+                        .exposedHeaders("Authorization");
             }
         };
     }
