@@ -1,0 +1,1 @@
+ALTER TABLE habits ADD COLUMN shortName VARCHAR(255) NULL;

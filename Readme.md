@@ -125,3 +125,11 @@ add line
 ```
 jenkins ALL=(root) NOPASSWD: /usr/bin/systemctl stop habits
 ```
+
+
+## Debug  
+
+```
+systemctl status habits.service
+journalctl -u habits.service
+```

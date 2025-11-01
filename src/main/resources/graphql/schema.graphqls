@@ -19,6 +19,7 @@ type Mutation {
 input HabitInput {
   id: ID
   name: String!
+  shortName: String!
 }
 
 type Person {
@@ -30,6 +31,7 @@ type Person {
 type Habit {
   id: ID!
   name: String
+  shortName: String
 }
 
 type Execution {

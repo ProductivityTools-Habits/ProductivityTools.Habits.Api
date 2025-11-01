@@ -30,13 +30,12 @@ public class HabitService {
     }
 
     @Transactional
-    public boolean addHabit(Habit habit)
-    {
-        try{
+    public boolean addHabit(Habit habit) {
+        try {
             // If id is null or 0, treat as new entity
             if (habit.getId() == null || habit.getId() == 0) {
                 // Create a new habit without an id to ensure JPA treats it as new
-                Habit newHabit = new Habit(habit.getName());
+                Habit newHabit = new Habit(habit.getName(), habit.getShortName());
                 this.habitRepo.save(newHabit);
             } else {
                 // For existing habits, check if it exists first
@@ -45,31 +44,27 @@ public class HabitService {
                     // Update existing habit
                     Habit existing = existingHabit.get();
                     existing.setName(habit.getName());
+                    existing.setShortName(habit.getShortName());
                     this.habitRepo.save(existing);
                 } else {
                     // ID provided but doesn't exist - treat as new by creating without id
-                    Habit newHabit = new Habit(habit.getName());
+                    Habit newHabit = new Habit(habit.getName(), habit.getShortName());
                     this.habitRepo.save(newHabit);
                 }
             }
             return true;
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             log.error("Error adding habit: {}", e.getMessage(), e);
             return false;
-        } 
+        }
     }
 
-    public boolean deleteHabit(int id)
-    {
-        try{
-        this.habitRepo.deleteById(id);
-        return true;
-        }
-        catch(Exception e)
-        {
+    public boolean deleteHabit(int id) {
+        try {
+            this.habitRepo.deleteById(id);
+            return true;
+        } catch (Exception e) {
             return false;
-        } 
-    }   
+        }
+    }
 }

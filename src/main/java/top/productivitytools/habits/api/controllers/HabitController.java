@@ -28,24 +28,24 @@ public class HabitController {
     }
 
     // @MutationMapping
-    // public boolean createHabit(@Argument("habitInput") HabitInput createHabitInput) 
+    // public boolean createHabit(@Argument("habitInput") HabitInput
+    // createHabitInput)
     // {
-    //     Habit habit=new Habit(createHabitInput.name());
-    //     boolean result=this.habitService.addHabit(habit);
-    //     return result;
+    // Habit habit=new Habit(createHabitInput.name());
+    // boolean result=this.habitService.addHabit(habit);
+    // return result;
     // }
 
     @MutationMapping
-    public boolean saveHabit(@Argument("habitInput") HabitInput createHabitInput) 
-    {
-        Habit habit=new Habit(createHabitInput.id(), createHabitInput.name());
-        boolean result=this.habitService.addHabit(habit);
+    public boolean saveHabit(@Argument("habitInput") HabitInput createHabitInput) {
+        Habit habit = new Habit(createHabitInput.id(), createHabitInput.name(), createHabitInput.shortName());
+        boolean result = this.habitService.addHabit(habit);
         return result;
     }
 
     @MutationMapping
-    public boolean deleteHabit(@Argument("id") Integer id){
-        var r=this.habitService.deleteHabit(id);
+    public boolean deleteHabit(@Argument("id") Integer id) {
+        var r = this.habitService.deleteHabit(id);
         return r;
     }
 }

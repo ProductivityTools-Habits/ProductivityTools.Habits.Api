@@ -19,13 +19,15 @@ public class Habit {
     private Integer id;
     @Column(name = "name")
     private String name;
-  
+    @Column(name = "shortname")
+    private String shortName;
 
-    public Habit(String name) {
-        this.name=name;
+    public Habit(String name, String shortName) {
+        this.name = name;
+        this.shortName = shortName;
     }
 
-    public Integer getId(){
+    public Integer getId() {
         return id;
     }
 
@@ -39,5 +41,13 @@ public class Habit {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getShortName() {
+        return shortName;
+    }
+
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
     }
 }
