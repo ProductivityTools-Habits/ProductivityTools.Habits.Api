@@ -53,8 +53,7 @@ sudo systemctl status postgresql
 ```
 
 Connect
-```
-    sudo -u postgres psql
+sudo -u postgres psql
 ```
 
 pgAdmin

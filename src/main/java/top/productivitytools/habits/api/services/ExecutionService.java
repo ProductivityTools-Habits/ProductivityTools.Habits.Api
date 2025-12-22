@@ -40,22 +40,22 @@ public class ExecutionService {
         var r = this.setStatus(id, date, "Skipped");
         return r;
     }
-    
-    public boolean resetExecution(int id, LocalDate date){
-        var r=this.setStatus(id, date, "Waiting");
+
+    public boolean resetExecution(int id, LocalDate date) {
+        var r = this.setStatus(id, date, null);
         return r;
     }
 
-    public boolean failExecution(int id, LocalDate date){
-        var r=this.setStatus(id, date, "Failed");
+    public boolean failExecution(int id, LocalDate date) {
+        var r = this.setStatus(id, date, "Failed");
         return r;
     }
 
     private boolean setStatus(int id, LocalDate date, String status) {
         try {
-            var recordExists = executionRepo.findByHabitIdAndDate(id, date);            
+            var recordExists = executionRepo.findByHabitIdAndDate(id, date);
             if (recordExists.size() == 1) {
-                var record=recordExists.get(0);
+                var record = recordExists.get(0);
                 record.setStatus(status);
                 executionRepo.save(record);
                 return true;
