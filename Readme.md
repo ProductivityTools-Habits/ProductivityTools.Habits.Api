@@ -1,9 +1,37 @@
+
+## Coding on Windows
+
+### Prerequisties
+Java is needed 
+```
+winget install -e --id Oracle.JDK.24
+$env:JAVA_HOME="c:\Program Files\Java\jdk-24\"
+```
+Postgres is needed
+```
+winget install -e --id PostgresPro.Standard.17
+winget install -e --id PostgreSQL.pgAdmin
+```
+
+Run
 ```
 .\gradlew.bat wrapper
 .\gradlew.bat bootrun
 ```
 
+
 Open [page](http://localhost:8080/graphiql)
+
+## Deployment on Ubuntu
+Service is deployed on Ubuntu
+
+### Debug deployment issues
+
+```
+systemctl status habits.service
+sudo systemctl start habits
+journalctl -u habits.service
+```
 
 invoke
 ```
@@ -108,11 +136,6 @@ chmod +x gradlew
 ./gradlew clean build
 ```
 
-
-
-
-
-
 sudo cp habits.env.example /etc/default/habits
 
 enable jenkins tu run command without sudo
@@ -125,10 +148,3 @@ add line
 jenkins ALL=(root) NOPASSWD: /usr/bin/systemctl stop habits
 ```
 
-
-## Debug  
-
-```
-systemctl status habits.service
-journalctl -u habits.service
-```
