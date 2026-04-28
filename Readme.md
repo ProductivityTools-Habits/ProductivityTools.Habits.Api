@@ -12,6 +12,8 @@ Postgres is needed
 winget install -e --id PostgresPro.Standard.17
 winget install -e --id PostgreSQL.pgAdmin
 ```
+Create databaes in the posgres if does not exist 
+name:habits
 
 Run
 ```
