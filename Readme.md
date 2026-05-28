@@ -73,6 +73,10 @@ query {
 }
 ```
 
+## Debug data plane
+- When preflight fails tha response headers are empty
+- When that happens browser does not send actual request and keep it in pending
+
 
 ## Deploy on ubuntu
 
