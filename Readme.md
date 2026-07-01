@@ -24,6 +24,13 @@ Run
 
 Open [page](http://localhost:8080/graphiql)
 
+## Coding on Ubuntu
+```
+export GOOGLE_APPLICATION_CREDENTIALS="/usr/local/google/home/pwujczyk/github/Home.Configuration/PTProjectsWeb.Firebase.ServiceAccount.json"
+chmod +x ./gradlew
+./gradlew bootRun
+```
+
 ## Deployment on Ubuntu
 Service is deployed on Ubuntu
 
