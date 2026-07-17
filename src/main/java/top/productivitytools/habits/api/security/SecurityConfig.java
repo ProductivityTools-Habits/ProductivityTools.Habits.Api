@@ -26,6 +26,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/actuator/**").permitAll() // Allow actuator endpoints
                 .requestMatchers("/graphiql/**").permitAll() // Allow GraphiQL for development
+                .requestMatchers("/debug/**").permitAll() // Allow debug endpoints without token
                 .anyRequest().authenticated() // All other requests require authentication
             )
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class); // Add JWT filter
