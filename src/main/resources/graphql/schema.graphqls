@@ -4,6 +4,7 @@ type Query {
   getHabit(id: Int!): Habit
   getHabits: [Habit]
   getExecutions: [Execution]
+  getDayStatuses: [DayStatus]
 }
 
 type Mutation {
@@ -14,6 +15,9 @@ type Mutation {
   resetExecution(id: Int!, date: String!): Boolean
   failExecution(id: Int!, date: String!): Boolean
 
+  skipDay(date: String!, reason: String!): Boolean
+  failDay(date: String!, reason: String): Boolean
+  resetDay(date: String!): Boolean
 }
 
 input HabitInput {
@@ -39,4 +43,11 @@ type Execution {
   date: String
   habit: Habit
   status: String
+}
+
+type DayStatus {
+  id: ID!
+  date: String
+  status: String
+  reason: String
 }
