@@ -36,6 +36,7 @@ type Habit {
   id: ID!
   name: String
   shortName: String
+  createdAt: String
 }
 
 type Execution {
